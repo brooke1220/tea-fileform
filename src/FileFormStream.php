@@ -147,7 +147,7 @@ class FileFormStream implements StreamInterface
         return $contents;
     }
 
-    public function close()
+    public function close(): void
     {
         if (isset($this->stream)) {
             if (\is_resource($this->stream)) {
