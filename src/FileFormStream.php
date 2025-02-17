@@ -57,7 +57,7 @@ class FileFormStream implements StreamInterface
         $this->close();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         try {
             $this->seek(0);
@@ -132,7 +132,7 @@ class FileFormStream implements StreamInterface
         return null;
     }
 
-    public function getContents()
+    public function getContents(): string
     {
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');
@@ -170,7 +170,7 @@ class FileFormStream implements StreamInterface
         return $result;
     }
 
-    public function getSize()
+    public function getSize(): ?int
     {
         if (null !== $this->size) {
             return $this->size;
@@ -195,22 +195,22 @@ class FileFormStream implements StreamInterface
         return null;
     }
 
-    public function isReadable()
+    public function isReadable(): bool
     {
         return $this->readable;
     }
 
-    public function isWritable()
+    public function isWritable(): bool
     {
         return $this->writable;
     }
 
-    public function isSeekable()
+    public function isSeekable(): bool
     {
         return $this->seekable;
     }
 
-    public function eof()
+    public function eof(): bool
     {
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');
@@ -219,7 +219,7 @@ class FileFormStream implements StreamInterface
         return feof($this->stream);
     }
 
-    public function tell()
+    public function tell(): int
     {
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');
@@ -234,12 +234,12 @@ class FileFormStream implements StreamInterface
         return $result;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->seek(0);
     }
 
-    public function seek($offset, $whence = SEEK_SET)
+    public function seek($offset, $whence = SEEK_SET): void
     {
         $whence = (int) $whence;
 
@@ -254,7 +254,7 @@ class FileFormStream implements StreamInterface
         }
     }
 
-    public function read($length)
+    public function read($length): string
     {
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');
@@ -278,7 +278,7 @@ class FileFormStream implements StreamInterface
         return $string;
     }
 
-    public function write($string)
+    public function write($string): int
     {
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');
